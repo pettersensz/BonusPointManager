@@ -1,7 +1,12 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using BonusPointManager.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddDbContext<BonusPointManagerContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("BonusPointManagerContext") ?? throw new InvalidOperationException("Connection string 'BonusPointManagerContext' not found.")));
 
 var app = builder.Build();
 
