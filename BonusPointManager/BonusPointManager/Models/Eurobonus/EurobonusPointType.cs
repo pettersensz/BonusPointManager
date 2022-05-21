@@ -1,13 +1,15 @@
 ﻿namespace BonusPointManager.Models.Eurobonus
 {
-  public class EurobonusPointType
+  //public class EurobonusPointType
+  //{
+  //  public PointType Id { get; set; }
+  //  public string PointType { get; set; }
+  //}
+
+  public enum PointType : int
   {
-    public int Id { get; set; }
-    public enum PointType
-    {
-      Basic,
-      Extra,
-      Status
-    }
+    Extra = 0,
+    Basic = 1,
+    Status = 2
   }
 }

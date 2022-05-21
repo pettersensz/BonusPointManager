@@ -4,6 +4,7 @@ using BonusPointManager.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BonusPointManager.Migrations
 {
     [DbContext(typeof(BonusPointManagerContext))]
-    partial class BonusPointManagerContextModelSnapshot : ModelSnapshot
+    [Migration("20220521191027_DropPointTypeTableTemporarily")]
+    partial class DropPointTypeTableTemporarily
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

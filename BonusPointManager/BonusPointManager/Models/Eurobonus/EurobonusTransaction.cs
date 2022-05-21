@@ -10,7 +10,7 @@ namespace BonusPointManager.Models.Eurobonus
     [DataType(DataType.Date)]
     public DateTime ExpiryDate { get; set; }
     public int Amount { get; set; }
-    public EurobonusPointType PointType { get; set; }
-    public string? Description { get; set; }
+    public PointType PointType { get; set; }
+    public string Description { get; set; }
   }
 }
