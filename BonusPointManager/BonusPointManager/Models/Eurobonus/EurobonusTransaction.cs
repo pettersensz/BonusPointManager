@@ -12,5 +12,8 @@ namespace BonusPointManager.Models.Eurobonus
     public int Amount { get; set; }
     public PointType PointType { get; set; }
     public string Description { get; set; }
+
+    [Display(Name = "Eurobonus Account")]
+    public EurobonusAccount Account { get; set; }
   }
 }
