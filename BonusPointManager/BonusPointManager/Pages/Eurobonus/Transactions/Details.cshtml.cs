@@ -18,12 +18,12 @@ namespace BonusPointManager.Pages.Eurobonus.Transactions
 
     public async Task<IActionResult> OnGetAsync(int? id)
     {
-      if (id == null || _context.EurobonusTransaction == null)
+      if (id == null || _context.EurobonusTransactions == null)
       {
         return NotFound();
       }
 
-      var eurobonustransaction = await _context.EurobonusTransaction.FirstOrDefaultAsync(m => m.ID == id);
+      var eurobonustransaction = await _context.EurobonusTransactions.FirstOrDefaultAsync(m => m.ID == id);
       if (eurobonustransaction == null)
       {
         return NotFound();

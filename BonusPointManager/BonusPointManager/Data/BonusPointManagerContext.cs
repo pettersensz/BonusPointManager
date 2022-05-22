@@ -11,10 +11,10 @@ namespace BonusPointManager.Data
     }
 
     // TODO Rename to plural?
-    public DbSet<EurobonusTransaction> EurobonusTransaction { get; set; }
-    public DbSet<EurobonusPointType> EurobonusPointType { get; set; }
-    public DbSet<EurobonusStatusLevel> EurobonusStatusLevel { get; set; }
-    public DbSet<EurobonusAccount> EurobonusAccount { get; set; }
+    public DbSet<EurobonusTransaction> EurobonusTransactions { get; set; }
+    public DbSet<EurobonusPointType> EurobonusPointTypes { get; set; }
+    public DbSet<EurobonusStatusLevel> EurobonusStatusLevels { get; set; }
+    public DbSet<EurobonusAccount> EurobonusAccounts { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

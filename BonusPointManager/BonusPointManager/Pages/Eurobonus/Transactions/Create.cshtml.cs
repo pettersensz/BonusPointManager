@@ -26,12 +26,12 @@ namespace BonusPointManager.Pages.Eurobonus.Transactions
     // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
     public async Task<IActionResult> OnPostAsync()
     {
-      if (!ModelState.IsValid || _context.EurobonusTransaction == null || EurobonusTransaction == null)
+      if (!ModelState.IsValid || _context.EurobonusTransactions == null || EurobonusTransaction == null)
       {
         return Page();
       }
 
-      _context.EurobonusTransaction.Add(EurobonusTransaction);
+      _context.EurobonusTransactions.Add(EurobonusTransaction);
       await _context.SaveChangesAsync();
 
       return RedirectToPage("./Index");

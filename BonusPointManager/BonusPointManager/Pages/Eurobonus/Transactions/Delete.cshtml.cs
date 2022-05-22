@@ -20,12 +20,12 @@ namespace BonusPointManager.Pages.Eurobonus.Transactions
 
     public async Task<IActionResult> OnGetAsync(int? id)
     {
-      if (id == null || _context.EurobonusTransaction == null)
+      if (id == null || _context.EurobonusTransactions == null)
       {
         return NotFound();
       }
 
-      var eurobonustransaction = await _context.EurobonusTransaction.FirstOrDefaultAsync(m => m.ID == id);
+      var eurobonustransaction = await _context.EurobonusTransactions.FirstOrDefaultAsync(m => m.ID == id);
 
       if (eurobonustransaction == null)
       {
@@ -40,16 +40,16 @@ namespace BonusPointManager.Pages.Eurobonus.Transactions
 
     public async Task<IActionResult> OnPostAsync(int? id)
     {
-      if (id == null || _context.EurobonusTransaction == null)
+      if (id == null || _context.EurobonusTransactions == null)
       {
         return NotFound();
       }
-      var eurobonustransaction = await _context.EurobonusTransaction.FindAsync(id);
+      var eurobonustransaction = await _context.EurobonusTransactions.FindAsync(id);
 
       if (eurobonustransaction != null)
       {
         EurobonusTransaction = eurobonustransaction;
-        _context.EurobonusTransaction.Remove(EurobonusTransaction);
+        _context.EurobonusTransactions.Remove(EurobonusTransaction);
         await _context.SaveChangesAsync();
       }
 

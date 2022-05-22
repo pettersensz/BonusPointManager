@@ -17,9 +17,9 @@ namespace BonusPointManager.Pages.Eurobonus.Transactions
 
     public async Task OnGetAsync()
     {
-      if (_context.EurobonusTransaction != null)
+      if (_context.EurobonusTransactions != null)
       {
-        EurobonusTransaction = await _context.EurobonusTransaction.ToListAsync();
+        EurobonusTransaction = await _context.EurobonusTransactions.ToListAsync();
       }
     }
   }
