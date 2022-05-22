@@ -12,7 +12,7 @@ namespace BonusPointManager.Pages.Eurobonus.Accounts
 {
     public class CreateModel : PageModel
     {
-        private readonly BonusPointManager.Data.BonusPointManagerContext _context;
+        private readonly BonusPointManagerContext _context;
 
         public CreateModel(BonusPointManager.Data.BonusPointManagerContext context)
         {

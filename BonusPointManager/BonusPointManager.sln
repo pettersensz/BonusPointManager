@@ -5,6 +5,8 @@ VisualStudioVersion = 17.2.32505.173
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BonusPointManager", "BonusPointManager\BonusPointManager.csproj", "{ECC413CE-5D5D-48EE-B9CF-613B74B0C52D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BonusPointManager.Models.Test", "BonusPointManager.Models.Test\BonusPointManager.Models.Test.csproj", "{C91AC2EC-A076-4A01-94E9-DA975BDA1FF1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{ECC413CE-5D5D-48EE-B9CF-613B74B0C52D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ECC413CE-5D5D-48EE-B9CF-613B74B0C52D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ECC413CE-5D5D-48EE-B9CF-613B74B0C52D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C91AC2EC-A076-4A01-94E9-DA975BDA1FF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C91AC2EC-A076-4A01-94E9-DA975BDA1FF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C91AC2EC-A076-4A01-94E9-DA975BDA1FF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C91AC2EC-A076-4A01-94E9-DA975BDA1FF1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

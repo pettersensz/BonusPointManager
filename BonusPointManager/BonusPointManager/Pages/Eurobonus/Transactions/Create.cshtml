@@ -15,8 +15,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="EurobonusTransaction.PointType" class="control-label"></label>
-                <select asp-for="EurobonusTransaction.PointType" asp-items="Html.GetEnumSelectList<Models.Eurobonus.PointType>()">
-                <option value="1"></option>
+                <select asp-for="EurobonusTransaction.PointType" asp-items="Html.GetEnumSelectList<Models.Eurobonus.PointType>()" class="form-control">
                 </select>
             </div>
             <div class="form-group">
@@ -24,11 +23,6 @@
                 <input asp-for="EurobonusTransaction.AcquiredDate" class="form-control" />
                 <span asp-validation-for="EurobonusTransaction.AcquiredDate" class="text-danger"></span>
             </div>
-@*            <div class="form-group">
-                <label asp-for="EurobonusTransaction.ExpiryDate" class="control-label"></label>
-                <input asp-for="EurobonusTransaction.ExpiryDate" class="form-control" />
-                <span asp-validation-for="EurobonusTransaction.ExpiryDate" class="text-danger"></span>
-            </div>*@
             <div class="form-group">
                 <label asp-for="EurobonusTransaction.Amount" class="control-label"></label>
                 <input asp-for="EurobonusTransaction.Amount" class="form-control" />

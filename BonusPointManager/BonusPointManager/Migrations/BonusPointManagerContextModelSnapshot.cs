@@ -44,7 +44,7 @@ namespace BonusPointManager.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("EurobonusAccounts");
+                    b.ToTable("EurobonusAccounts", (string)null);
                 });
 
             modelBuilder.Entity("BonusPointManager.Models.Eurobonus.EurobonusPointType", b =>
@@ -57,7 +57,7 @@ namespace BonusPointManager.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("EurobonusPointTypes");
+                    b.ToTable("EurobonusPointTypes", (string)null);
 
                     b.HasData(
                         new
@@ -87,7 +87,7 @@ namespace BonusPointManager.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("EurobonusStatusLevels");
+                    b.ToTable("EurobonusStatusLevels", (string)null);
 
                     b.HasData(
                         new
@@ -142,7 +142,7 @@ namespace BonusPointManager.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("EurobonusTransactions");
+                    b.ToTable("EurobonusTransactions", (string)null);
                 });
 #pragma warning restore 612, 618
         }
