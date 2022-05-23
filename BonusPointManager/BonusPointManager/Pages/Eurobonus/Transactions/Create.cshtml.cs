@@ -43,7 +43,7 @@ namespace BonusPointManager.Pages.Eurobonus.Transactions
       }
       var account = _context.EurobonusAccounts.FirstOrDefault(a => a.Id == SelectedAccountId);
       if (account != null) EurobonusTransaction.Account = account;
-      // TODO this logic should not live here
+      //TODO this logic should not live here
       EurobonusTransaction.ExpiryDate = account.GetCurrentPeriodEndDate().AddYears(4);
 
       _context.EurobonusTransactions.Add(EurobonusTransaction);

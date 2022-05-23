@@ -18,8 +18,19 @@ namespace BonusPointManager.Models.Eurobonus
     public StatusLevel StatusLevel { get; set; }
 
     // Not-mapped properties
+    [Display(Name = "Status Level Expiry Date")]
+    public string StatusLevelExpiryString { get => GetStatusLevelExpiry().ToShortDateString(); }
+
     [Display(Name = "Current Period")]
     public string CurrentPeriodString {get => GetCurrentPeriodAsString();}
+
+    // Methods
+    public DateTime GetStatusLevelExpiry()
+    {
+      var endOfPeriod = GetCurrentPeriodEndDate();
+      var statusExpiry = endOfPeriod.AddMonths(3);
+      return statusExpiry;
+    }
 
     public string GetCurrentPeriodAsString()
     {
