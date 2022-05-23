@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using BonusPointManager.Data;
@@ -12,9 +8,9 @@ namespace BonusPointManager.Pages.Eurobonus.Accounts
 {
     public class DetailsModel : PageModel
     {
-        private readonly BonusPointManager.Data.BonusPointManagerContext _context;
+        private readonly BonusPointManagerContext _context;
 
-        public DetailsModel(BonusPointManager.Data.BonusPointManagerContext context)
+        public DetailsModel(BonusPointManagerContext context)
         {
             _context = context;
         }

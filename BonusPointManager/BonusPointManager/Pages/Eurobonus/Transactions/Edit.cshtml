@@ -30,6 +30,16 @@
                 <span asp-validation-for="EurobonusTransaction.Amount" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="EurobonusTransaction.Description" class="control-label"></label>
+                <input asp-for="EurobonusTransaction.Description" class="form-control" />
+                <span asp-validation-for="EurobonusTransaction.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EurobonusTransaction.PointType" class="control-label"></label>
+                <select asp-for="EurobonusTransaction.PointType" asp-items="Html.GetEnumSelectList<Models.Eurobonus.PointType>()" class="form-control">
+                </select>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>

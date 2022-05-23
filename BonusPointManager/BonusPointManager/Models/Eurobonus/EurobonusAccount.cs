@@ -1,10 +1,18 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using BonusPointManager.Data;
+using System.ComponentModel.DataAnnotations;
 
 namespace BonusPointManager.Models.Eurobonus
 {
   [Display(Name = "Eurobonus Account")]
   public class EurobonusAccount
   {
+    private readonly BonusPointManagerContext _context;
+
+    public EurobonusAccount(BonusPointManagerContext context)
+    {
+      _context = context;
+    }
+
     public int Id { get; set; }
     [Display(Name = "Account Number")]
     public int AccountNumber { get; set; }
@@ -23,6 +31,12 @@ namespace BonusPointManager.Models.Eurobonus
 
     [Display(Name = "Current Period")]
     public string CurrentPeriodString {get => GetCurrentPeriodAsString();}
+
+    [Display(Name = "Status Points This Period")]
+    public int CurrentPeriodStatusPoints { get => GetCurrentPeriodStatusPoints(); }
+
+    [Display(Name = "Extra Points This Period")]
+    public int CurrentPeriodExtraPoints { get => GetCurrentPeriodExtraPoints(); }
 
     // Methods
     public DateTime GetStatusLevelExpiry()
@@ -55,6 +69,45 @@ namespace BonusPointManager.Models.Eurobonus
       var currentEndOfPeriod = endOfFirstPeriod.AddYears(yearsSinceSignup);
       if (currentEndOfPeriod > DateTime.Now.AddYears(1)) currentEndOfPeriod = currentEndOfPeriod.AddYears(-1);
       return currentEndOfPeriod;
+    }
+
+    public int GetCurrentPeriodStatusPoints()
+    {
+      var transactions = _context.EurobonusTransactions
+        .Where(p => p.Account.Id == Id)
+        .Where(p => p.PointType == PointType.Status || p.PointType == PointType.Basic)
+        .Where(p => p.AcquiredDate >= GetCurrentPeriodStartDate() && p.AcquiredDate <= GetCurrentPeriodEndDate());
+      var sum = 0;
+      foreach(var transaction in transactions)
+      {
+        sum += transaction.Amount;
+      }
+      return sum;
+    }
+
+    public int GetCurrentPeriodExtraPoints()
+    {
+      var transactions = _context.EurobonusTransactions
+        .Where(p => p.Account.Id == Id)
+        .Where(p => p.PointType == PointType.Basic || p.PointType == PointType.Extra)
+        .Where(p => p.AcquiredDate >= GetCurrentPeriodStartDate() && p.AcquiredDate <= GetCurrentPeriodEndDate());
+      var sum = 0;
+      foreach (var transaction in transactions)
+      {
+        if (!CheckIfTransactionIsARefund(transaction))
+        {
+          sum += transaction.Amount;
+        }
+      }
+      return sum;
+    }
+
+    public bool CheckIfTransactionIsARefund(EurobonusTransaction transaction)
+    {
+      if (transaction.PointType != PointType.Extra) return false;
+      if (transaction.Description != "Scandinavian Airlines System") return false;
+      if (transaction.Amount % 3000 != 0) return false;
+      return true;
     }
 
   }
