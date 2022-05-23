@@ -14,6 +14,9 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.EurobonusTransaction[0].Account)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.EurobonusTransaction[0].AcquiredDate)
             </th>
             <th>
@@ -22,12 +25,21 @@
             <th>
                 @Html.DisplayNameFor(model => model.EurobonusTransaction[0].Amount)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EurobonusTransaction[0].PointType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EurobonusTransaction[0].Description)
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model.EurobonusTransaction) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Account.Name)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.AcquiredDate)
             </td>
@@ -36,6 +48,12 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PointType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |

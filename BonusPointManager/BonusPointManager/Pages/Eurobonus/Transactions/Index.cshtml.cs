@@ -19,7 +19,7 @@ namespace BonusPointManager.Pages.Eurobonus.Transactions
     {
       if (_context.EurobonusTransactions != null)
       {
-        EurobonusTransaction = await _context.EurobonusTransactions.ToListAsync();
+        EurobonusTransaction = await _context.EurobonusTransactions.Include(t => t.Account).ToListAsync();
       }
     }
   }
