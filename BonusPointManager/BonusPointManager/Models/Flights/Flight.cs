@@ -1,4 +1,6 @@
-﻿namespace BonusPointManager.Models.Flights
+﻿using BonusPointManager.Models.Person;
+
+namespace BonusPointManager.Models.Flights
 {
   public class Flight
   {
@@ -10,5 +12,6 @@
     public DateTime DepartureTimeUtc { get; set; }
     public DateTime ArrivalTimeUtc { get; set; }
     public Aircraft Aircraft { get; set; }
+    public ICollection<Passenger> Passengers { get; set; }
   }
 }

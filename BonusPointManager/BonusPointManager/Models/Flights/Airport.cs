@@ -3,7 +3,7 @@
   public class Airport
   {
     public int Id { get; set; }
-    public List<Runway> Runways { get; set; }
+    public ICollection<Runway> Runways { get; set; }
     public string Country { get; set; }
     public string IataCode { get; set; }
     public string IcaoCode { get; set; }

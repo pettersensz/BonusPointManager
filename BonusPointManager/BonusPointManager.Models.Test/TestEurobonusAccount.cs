@@ -1,14 +1,21 @@
 using FluentAssertions;
 using BonusPointManager.Models.Eurobonus;
+using BonusPointManager.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace BonusPointManager.Models.Test
 {
   public class TestEurobonusAccount
   {
-    private EurobonusAccount account;
+    private readonly EurobonusAccount _account;
+    private readonly string _connectionString = "Server=(localdb)\\mssqllocaldb;Database=BonusPointManager.Data;Trusted_Connection=True;MultipleActiveResultSets=true";
+
     public TestEurobonusAccount()
     {
-      account = new EurobonusAccount
+      var builder = new DbContextOptionsBuilder<BonusPointManagerContext>();
+      //TODO Should probably use in-memory db for tests, don't want to save stuff to real db..
+      builder.UseSqlServer(_connectionString);
+      _account = new EurobonusAccount(new BonusPointManagerContext(builder.Options))
       {
         AccountNumber = 123456,
         SignupDate = new DateTime(2012, 7, 15),
@@ -20,7 +27,7 @@ namespace BonusPointManager.Models.Test
     [Fact]
     public void GetCurrentPeriodStartDateReturnsDateBeforeNow()
     {
-      var currentPeriodStartDate = account.GetCurrentPeriodStartDate();
+      var currentPeriodStartDate = _account.GetCurrentPeriodStartDate();
       currentPeriodStartDate.Should().BeOnOrBefore(DateTime.Now);
 
       var timeDifference = DateTime.Now - currentPeriodStartDate;
@@ -30,7 +37,7 @@ namespace BonusPointManager.Models.Test
     [Fact]
     public void GetCurrentPeriodEndDateReturnsDateAfterNow()
     {
-      var currentPeriodEndDate = account.GetCurrentPeriodEndDate();
+      var currentPeriodEndDate = _account.GetCurrentPeriodEndDate();
       currentPeriodEndDate.Should().BeOnOrAfter(DateTime.Now);
 
       var timeDifference = currentPeriodEndDate - DateTime.Now;
