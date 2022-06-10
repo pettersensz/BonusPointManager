@@ -1,9 +1,9 @@
 ﻿using BonusPointManager.Data;
-using BonusPointManager.Models.Eurobonus;
+using BonusPointManager.Models.Flights;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
-namespace BonusPointManager.Pages.Eurobonus.Transactions
+namespace BonusPointManager.Pages.Flights
 {
   public class IndexModel : PageModel
   {
@@ -14,13 +14,13 @@ namespace BonusPointManager.Pages.Eurobonus.Transactions
       _context = context;
     }
 
-    public IList<EurobonusTransaction> EurobonusTransaction { get; set; } = default!;
+    public IList<Flight> Flight { get; set; } = default!;
 
     public async Task OnGetAsync()
     {
-      if (_context.EurobonusTransactions != null)
+      if (_context.Flights != null)
       {
-        EurobonusTransaction = await _context.EurobonusTransactions.Include(t => t.Account).ToListAsync();
+        Flight = await _context.Flights.ToListAsync();
       }
     }
   }
