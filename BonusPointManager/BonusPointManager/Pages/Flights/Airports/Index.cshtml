@@ -1,0 +1,79 @@
+﻿@page
+@model BonusPointManager.Pages.Flights.Airports.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+    <a asp-page="Lookup">Lookup</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Airport[0].Country)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Airport[0].IataCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Airport[0].IcaoCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Airport[0].LatitudeDeg)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Airport[0].LongitudeDeg)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Airport[0].ElevationFt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Airport[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Airport[0].LongName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Airport) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Country)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IataCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IcaoCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LatitudeDeg)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LongitudeDeg)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ElevationFt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LongName)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,31 @@
+﻿@page
+@model BonusPointManager.Pages.Flights.Airports.LookupModel
+@{
+    ViewData["Title"] = "Lookup";
+}
+
+<h1>Lookup</h1>
+
+<h4>Airport</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="Airport.IcaoCode" class="control-label"></label>
+                <input asp-for="IcaoCode" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Check" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<hr/ >
+<div class="row">
+    <div>@ViewData["Something"]</div>
+</div>
+
+<div>
+<a asp-page="Index">Back to List</a>
+</div>

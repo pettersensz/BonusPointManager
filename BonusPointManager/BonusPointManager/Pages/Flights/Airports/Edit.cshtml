@@ -1,0 +1,70 @@
+﻿@page
+@model BonusPointManager.Pages.Flights.Airports.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Airport</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Airport.Id" />
+            <div class="form-group">
+                <label asp-for="Airport.Country" class="control-label"></label>
+                <input asp-for="Airport.Country" class="form-control" />
+                <span asp-validation-for="Airport.Country" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Airport.IataCode" class="control-label"></label>
+                <input asp-for="Airport.IataCode" class="form-control" />
+                <span asp-validation-for="Airport.IataCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Airport.IcaoCode" class="control-label"></label>
+                <input asp-for="Airport.IcaoCode" class="form-control" />
+                <span asp-validation-for="Airport.IcaoCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Airport.LatitudeDeg" class="control-label"></label>
+                <input asp-for="Airport.LatitudeDeg" class="form-control" />
+                <span asp-validation-for="Airport.LatitudeDeg" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Airport.LongitudeDeg" class="control-label"></label>
+                <input asp-for="Airport.LongitudeDeg" class="form-control" />
+                <span asp-validation-for="Airport.LongitudeDeg" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Airport.ElevationFt" class="control-label"></label>
+                <input asp-for="Airport.ElevationFt" class="form-control" />
+                <span asp-validation-for="Airport.ElevationFt" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Airport.Name" class="control-label"></label>
+                <input asp-for="Airport.Name" class="form-control" />
+                <span asp-validation-for="Airport.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Airport.LongName" class="control-label"></label>
+                <input asp-for="Airport.LongName" class="form-control" />
+                <span asp-validation-for="Airport.LongName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
