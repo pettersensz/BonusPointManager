@@ -1,0 +1,29 @@
+﻿@page
+@model BonusPointManager.Pages.Flights.Airports.AddRunwaysModel
+@{
+    ViewData["Title"] = "Add Runways";
+}
+
+<h1>Add Runways</h1>
+<h4>Runways for @Model.Airport.Name</h4>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div class="form-group">
+                <input type="hidden" asp-for="Airport.IcaoCode" />
+                <input type="hidden" asp-for="Airport.Name" />
+                <input type="submit" value="Add" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<hr/ >
+<div class="row">
+    <div>@ViewData["Message"]</div>
+</div>
+
+<div>
+<a asp-page="Index">Back to List</a>
+</div>

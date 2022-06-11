@@ -7,6 +7,11 @@ namespace BonusPointManager.Models.Flights
   {
     public int Id { get; set; }
     public ICollection<Runway> Runways { get; set; }
+
+    [NotMapped]
+    [Display(Name="Runways")]
+    public int RunwayCount { get =>  Runways?.Count ?? 0; }
+
     public string Country { get; set; }
     public string IataCode { get; set; }
     public string IcaoCode { get; set; }
