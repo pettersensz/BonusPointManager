@@ -6,16 +6,14 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace BonusPointManager.Pages.Flights.Airports
 {
-  public class LookupModel : PageModel
+  public class LookupIataModel : PageModel
   {
     private readonly AirportService _airportService = new AirportService();
     private readonly BonusPointManagerContext _context;
-
-    public LookupModel(BonusPointManagerContext context)
+    public LookupIataModel(BonusPointManagerContext context)
     {
       _context = context;
     }
-
     public IActionResult OnGet()
     {
       return Page();
@@ -25,35 +23,35 @@ namespace BonusPointManager.Pages.Flights.Airports
     public Airport Airport { get; set; }
 
     [BindProperty]
-    public string IcaoCode { get; set; }
+    public string IataCode { get; set; }
 
     public async Task<IActionResult> OnPostAsync()
     {
-      var existInDb = _context.Airports.Any(a => a.IcaoCode == IcaoCode.ToUpper());
+      var existInDb = _context.Airports.Any(a => a.IataCode == IataCode.ToUpper());
 
       if (existInDb)
       {
-        ViewData["Something"] = IcaoCode.ToUpper() + " already exists in the database";
+        ViewData["Message"] = IataCode.ToUpper() + " already exists in the database";
         return Page();
       }
-      
-      var existInFile = _airportService.AirportExistsInFileIcao(IcaoCode);
-      Airport = _airportService.GetAirportIcao(IcaoCode);
+
+      var existInFile = _airportService.AirportExistsInFileIata(IataCode);
+
+      //Airport = _airportService.GetAirportIata(IataCode);
 
       if (existInFile)
       {
-        ViewData["Something"] = IcaoCode.ToUpper() + " was added to the database";
-        _context.Airports.Add(Airport);
-        await _context.SaveChangesAsync();
+        ViewData["Message"] = IataCode.ToUpper() + " was added to the database";
+        //_context.Airports.Add(Airport);
+        //await _context.SaveChangesAsync();
       }
       else
       {
-        ViewData["Something"] = IcaoCode.ToUpper() + " was not found";
+        ViewData["Message"] = IataCode.ToUpper() + " was not found";
       }
 
 
       return Page();
     }
-
   }
 }
