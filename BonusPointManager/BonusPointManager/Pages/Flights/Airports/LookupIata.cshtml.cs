@@ -37,13 +37,13 @@ namespace BonusPointManager.Pages.Flights.Airports
 
       var existInFile = _airportService.AirportExistsInFileIata(IataCode);
 
-      //Airport = _airportService.GetAirportIata(IataCode);
+      Airport = _airportService.GetAirportFromIataCode(IataCode);
 
       if (existInFile)
       {
         ViewData["Message"] = IataCode.ToUpper() + " was added to the database";
-        //_context.Airports.Add(Airport);
-        //await _context.SaveChangesAsync();
+        _context.Airports.Add(Airport);
+        await _context.SaveChangesAsync();
       }
       else
       {

@@ -38,7 +38,7 @@ namespace BonusPointManager.Pages.Flights.Airports
       }
 
       var existInFile = _airportService.AirportExistsInFileIcao(IcaoCode);
-      Airport = _airportService.GetAirportIcao(IcaoCode);
+      Airport = _airportService.GetAirportFromIcaoCode(IcaoCode);
 
       if (existInFile)
       {

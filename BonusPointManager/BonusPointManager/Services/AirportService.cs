@@ -8,7 +8,7 @@ namespace BonusPointManager.Services
   {
     // TODO maybe move to appsettings file to make it replaceable
     readonly string _pathToAirportFile = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"\Data\airports.csv";
-    readonly NumberStyles _numberStyle = NumberStyles.AllowDecimalPoint;
+    readonly NumberStyles _numberStyle = NumberStyles.AllowDecimalPoint | NumberStyles.AllowLeadingSign;
     readonly CultureInfo _culture = CultureInfo.CreateSpecificCulture("en-US");
 
     public bool AirportExistsInFileIcao(string IcaoCode)
@@ -29,7 +29,7 @@ namespace BonusPointManager.Services
       return false;
     }
 
-    public Airport GetAirportIcao(string IcaoCode)
+    public Airport GetAirportFromIcaoCode(string IcaoCode)
     {
       IcaoCode = IcaoCode.ToUpper();
 
@@ -84,6 +84,20 @@ namespace BonusPointManager.Services
       return !Decimal.TryParse(nextItemInArray, _numberStyle, _culture, out _);
     }
 
+    private string GetIataCodeFromArray(string[] airportDetails)
+    {
+      string airportIataCode;
+      if (AirportNameContainsComma(airportDetails[4]))
+      {
+        airportIataCode = airportDetails[14].Trim('"');
+      }
+      else
+      {
+        airportIataCode = airportDetails[13].Trim('"');
+      }
+      return airportIataCode;
+    }
+
     public bool AirportExistsInFileIata(string IataCode)
     {
       IataCode = IataCode.ToUpper();
@@ -92,22 +106,36 @@ namespace BonusPointManager.Services
       while (line != null)
       {
         var airportDetails = line.Split(',');
-        string airportIataCode;
-        if (AirportNameContainsComma(airportDetails[4]))
-        {
-          airportIataCode = airportDetails[14].Trim('"');
-        }
-        else
-        {
-          airportIataCode = airportDetails[13].Trim('"');
-        }
-        if (airportIataCode == IataCode)
+        
+        if (GetIataCodeFromArray(airportDetails) == IataCode)
         {
           return true;
         }
         line = reader.ReadLine();
       }
       return false;
+    }
+
+    public Airport GetAirportFromIataCode(string IataCode)
+    {
+      IataCode = IataCode.ToUpper();
+
+      var airport = new Airport();
+
+      using var reader = new StreamReader(_pathToAirportFile);
+      var line = reader.ReadLine();
+      while (line != null)
+      {
+        var airportDetails = line.Split(',');
+        if (GetIataCodeFromArray(airportDetails) == IataCode)
+        {
+          airport = ReadAirportDataFromStringArray(airportDetails);
+          break;
+        }
+        line = reader.ReadLine();
+      }
+
+      return airport;
     }
   }
 }
