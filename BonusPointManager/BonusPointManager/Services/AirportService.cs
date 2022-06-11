@@ -1,23 +1,24 @@
 ﻿using BonusPointManager.Models.Flights;
 using System.Globalization;
+using System.Reflection;
 
 namespace BonusPointManager.Services
 {
   public class AirportService
   {
-    // TODO Hardcoded for now, find better solution
-    const string PathToAirportFile = @"C:\Users\sigmundpe\Dropbox\Eurobonus\ourairports-data-main\ourairports-data-main\airports.csv";
+    // TODO maybe move to appsettings file to make it replaceable
+    string PathToAirportFile = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"\Data\airports.csv";
 
     public bool AirportExistsInFileIcao(string IcaoCode)
     {
       IcaoCode = IcaoCode.ToUpper();
       using var reader = new StreamReader(PathToAirportFile);
       var line = reader.ReadLine();
-      while(line != null)
+      while (line != null)
       {
         var airportDetails = line.Split(',');
         var airportIcaoCode = airportDetails[1].Trim('"');
-        if(airportIcaoCode == IcaoCode)
+        if (airportIcaoCode == IcaoCode)
         {
           return true;
         }
@@ -55,7 +56,7 @@ namespace BonusPointManager.Services
             airport.Name = airportDetails[3] + "," + airportDetails[4];
             add++;
           }
-          
+
           // TODO decimals get read with all digits, but saved to DB with only two digits. Why?
           airport.LatitudeDeg = Decimal.Parse(airportDetails[4 + add], style, culture);
           airport.LongitudeDeg = Decimal.Parse(airportDetails[5 + add], style, culture);
@@ -69,7 +70,7 @@ namespace BonusPointManager.Services
         }
         line = reader.ReadLine();
       }
-      
+
       return airport;
     }
 
