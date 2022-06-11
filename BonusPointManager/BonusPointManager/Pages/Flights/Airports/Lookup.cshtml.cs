@@ -29,18 +29,26 @@ namespace BonusPointManager.Pages.Flights.Airports
 
     public async Task<IActionResult> OnPostAsync()
     {
-      var exist = _airportService.AirportExistsInFileIcao(IcaoCode);
+      var existInDb = _context.Airports.Any(a => a.IcaoCode == IcaoCode.ToUpper());
+
+      if (existInDb)
+      {
+        ViewData["Something"] = IcaoCode.ToUpper() + " already exists in the database";
+        return Page();
+      }
+      
+      var existInFile = _airportService.AirportExistsInFileIcao(IcaoCode);
       Airport = _airportService.GetAirportIcao(IcaoCode);
 
-      if (exist)
+      if (existInFile)
       {
-        ViewData["Something"] = IcaoCode + " is definitively an airport";
+        ViewData["Something"] = IcaoCode.ToUpper() + " was added to the database";
         _context.Airports.Add(Airport);
         await _context.SaveChangesAsync();
       }
       else
       {
-        ViewData["Something"] = IcaoCode + " is NOT an airport";
+        ViewData["Something"] = IcaoCode.ToUpper() + " was not found";
       }
 
 
