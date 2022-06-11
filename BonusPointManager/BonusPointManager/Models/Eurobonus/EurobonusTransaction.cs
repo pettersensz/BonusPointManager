@@ -13,8 +13,10 @@ namespace BonusPointManager.Models.Eurobonus
     [Display(Name = "Expiry Date")]
     public DateTime ExpiryDate { get; set; }
     public int Amount { get; set; }
+
     [Display(Name = "Point Type")]
     public PointType PointType { get; set; }
+
     public string Description { get; set; }
 
     [Display(Name = "Eurobonus Account")]

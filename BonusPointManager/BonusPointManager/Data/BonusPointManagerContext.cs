@@ -24,6 +24,10 @@ namespace BonusPointManager.Data
     public DbSet<Airport> Airports { get; set; }
     public DbSet<Flight> Flights { get; set; }
     public DbSet<Runway> Runways { get; set; }
+    public DbSet<RunwaySurface> RunwaySurfaces { get; set; }
+    public DbSet<RunwayHeading> RunwayHeadings { get; set; }
+
+
     // Person
     public DbSet<Passenger> Persons { get; set; }
 
@@ -33,6 +37,8 @@ namespace BonusPointManager.Data
       modelBuilder.Entity<EurobonusPointType>().Property(ept => ept.Id).HasConversion<int>();
       modelBuilder.Entity<EurobonusAccount>().Property(eba => eba.StatusLevel).HasConversion<int>();
       modelBuilder.Entity<EurobonusStatusLevel>().Property(ebsl => ebsl.Id).HasConversion<int>();
+      modelBuilder.Entity<RunwaySurface>().Property(rws => rws.Id).HasConversion<int>();
+      modelBuilder.Entity<Runway>().Property(rwy => rwy.RunwaySurface).HasConversion<int>();
 
       modelBuilder.Entity<Flight>().HasMany(f => f.Passengers).WithMany(p => p.Flights).UsingEntity(j => j.ToTable("PassengerFlights"));
 
@@ -52,6 +58,15 @@ namespace BonusPointManager.Data
         {
           Id = e,
           StatusLevel = e.ToString()
+        }));
+
+      modelBuilder.Entity<RunwaySurface>().HasData(
+        Enum.GetValues(typeof(SurfaceType))
+        .Cast<SurfaceType>()
+        .Select(st => new RunwaySurface
+        {
+          Id = st,
+          SurfaceType = st.ToString()
         }));
 
       base.OnModelCreating(modelBuilder);
