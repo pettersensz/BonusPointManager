@@ -19,5 +19,8 @@ namespace BonusPointManager.Models.Flights
     public SurfaceType RunwaySurface { get; set; }
 
     public List<RunwayHeading> RunwayHeadings { get; set; }
+
+    public int AirportId { get; set; }
+    public Airport Airport { get; set; }
   }
 }
