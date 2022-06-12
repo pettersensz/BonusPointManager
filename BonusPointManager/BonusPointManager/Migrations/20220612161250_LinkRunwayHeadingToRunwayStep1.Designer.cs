@@ -4,6 +4,7 @@ using BonusPointManager.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BonusPointManager.Migrations
 {
     [DbContext(typeof(BonusPointManagerContext))]
-    partial class BonusPointManagerContextModelSnapshot : ModelSnapshot
+    [Migration("20220612161250_LinkRunwayHeadingToRunwayStep1")]
+    partial class LinkRunwayHeadingToRunwayStep1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -332,12 +334,7 @@ namespace BonusPointManager.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("RunwayId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("RunwayId");
 
                     b.ToTable("RunwayHeadings");
                 });
@@ -466,17 +463,6 @@ namespace BonusPointManager.Migrations
                         .HasForeignKey("AirportId");
                 });
 
-            modelBuilder.Entity("BonusPointManager.Models.Flights.RunwayHeading", b =>
-                {
-                    b.HasOne("BonusPointManager.Models.Flights.Runway", "Runway")
-                        .WithMany("RunwayHeadings")
-                        .HasForeignKey("RunwayId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Runway");
-                });
-
             modelBuilder.Entity("BonusPointManager.Models.Person.Passenger", b =>
                 {
                     b.HasOne("BonusPointManager.Models.Eurobonus.EurobonusAccount", "Account")
@@ -504,11 +490,6 @@ namespace BonusPointManager.Migrations
             modelBuilder.Entity("BonusPointManager.Models.Flights.Airport", b =>
                 {
                     b.Navigation("Runways");
-                });
-
-            modelBuilder.Entity("BonusPointManager.Models.Flights.Runway", b =>
-                {
-                    b.Navigation("RunwayHeadings");
                 });
 #pragma warning restore 612, 618
         }

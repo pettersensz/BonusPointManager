@@ -17,7 +17,7 @@ namespace BonusPointManager.Models.Flights
     public int WidthM { get => LengthConversion.ConvertFeetToMeters(WidthFt); }
 
     public SurfaceType RunwaySurface { get; set; }
-    public RunwayHeading RunwayHeading1 { get; set; }
-    public RunwayHeading RunwayHeading2 { get; set; }
+
+    public List<RunwayHeading> RunwayHeadings { get; set; }
   }
 }

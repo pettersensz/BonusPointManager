@@ -31,5 +31,16 @@ namespace BonusPointManager.Models.Flights
 
     [Display(Name = "Elevation (ft)")]
     public int ElevationFt { get; set; }
+
+    
+    public int RunwayId { get; set; }
+   
+    public Runway Runway { get; set; }
+
+    [NotMapped]
+    public int LdaFt { get => Runway.LengthFt - DisplacedThresholdFt; }
+
+    [NotMapped]
+    public int ToraFt { get => Runway.LengthFt; }
   }
 }

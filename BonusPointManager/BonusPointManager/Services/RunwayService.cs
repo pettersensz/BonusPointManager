@@ -57,7 +57,7 @@ namespace BonusPointManager.Services
           var isAValue1 = Int32.TryParse(runwayDetails[13], out var threshold1);
           if (isAValue1) heading1.DisplacedThresholdFt = threshold1;
           else heading1.DisplacedThresholdFt = 0;
-          runway.RunwayHeading1 = heading1;
+          runway.RunwayHeadings.Add(heading1);
 
           var heading2 = new RunwayHeading();
           heading2.Name = runwayDetails[14].Trim('"');
@@ -68,7 +68,7 @@ namespace BonusPointManager.Services
           var isAValue2 = Int32.TryParse(runwayDetails[19], out var threshold2);
           if(isAValue2) heading2.DisplacedThresholdFt = threshold2;
           else heading2.DisplacedThresholdFt = 0;
-          runway.RunwayHeading2 = heading2;
+          runway.RunwayHeadings.Add(heading2);
 
           runway.Name = heading1.Name + "-" + heading2.Name;
 

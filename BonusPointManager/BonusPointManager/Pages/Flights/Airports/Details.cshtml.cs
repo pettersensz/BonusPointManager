@@ -24,7 +24,7 @@ namespace BonusPointManager.Pages.Flights.Airports
         return NotFound();
       }
 
-      var airport = await _context.Airports.Include(a => a.Runways).ThenInclude(r => r.RunwayHeading1).Include(a => a.Runways).ThenInclude(r => r.RunwayHeading2).FirstOrDefaultAsync(m => m.Id == id);
+      var airport = await _context.Airports.Include(a => a.Runways).ThenInclude(r => r.RunwayHeadings).FirstOrDefaultAsync(m => m.Id == id);
       if (airport == null)
       {
         return NotFound();
