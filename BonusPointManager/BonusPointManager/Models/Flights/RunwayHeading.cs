@@ -41,6 +41,12 @@ namespace BonusPointManager.Models.Flights
     public int LdaFt { get => Runway.LengthFt - DisplacedThresholdFt; }
 
     [NotMapped]
+    public int LdaM { get => LengthConversion.ConvertFeetToMeters(LdaFt); }
+
+    [NotMapped]
     public int ToraFt { get => Runway.LengthFt; }
+
+    [NotMapped]
+    public int ToraM { get => LengthConversion.ConvertFeetToMeters(ToraFt); }
   }
 }

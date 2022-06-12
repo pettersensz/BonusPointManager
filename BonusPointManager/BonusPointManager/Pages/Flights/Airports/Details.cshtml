@@ -81,30 +81,45 @@
                 <dd class="col-sm-10">
                     @Html.Raw(runway.LengthM + " / " + runway.WidthM)
                 </dd>
-                <dt class="col-sm-2">
+@*                <dt class="col-sm-2">
                     @Html.Raw("Length / Width (ft)")
                 </dt>
                 <dd class="col-sm-10">
                     @Html.Raw(runway.LengthFt + " / " + runway.WidthFt)
-                </dd>
+                </dd>*@
+                @foreach(var heading in runway.RunwayHeadings)
+                {
                 <dt class="col-sm-2">
-                    @Html.Raw("Heading 1")
+                    @Html.Raw("Heading " + (runway.RunwayHeadings.IndexOf(heading)+1).ToString() ) 
                 </dt>
                 <dd class="col-sm-10">
-                    @Html.Raw(runway.RunwayHeadings[0].Name + " / " + runway.RunwayHeadings[0].HeadingDeg)
+                    @Html.Raw(heading.Name + " / " + heading.HeadingDeg)
                 </dd>
                 <dt class="col-sm-2">
-                    @Html.Raw("H1 Disp. Threshold (m/ft)")
+                    @Html.Raw("Disp. Threshold (m)")
                 </dt>
                 <dd class="col-sm-10">
-                    @Html.Raw(runway.RunwayHeadings[0].DisplacedThresholdM + " / " + runway.RunwayHeadings[0].DisplacedThresholdFt)
+                    @Html.Raw(heading.DisplacedThresholdM)
+                </dd>
+@*              <dt class="col-sm-2">
+                    @Html.Raw("H1 Disp. Threshold (ft)")
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.Raw(runway.RunwayHeadings[0].DisplacedThresholdFt)
+                </dd>*@
+                <dt class="col-sm-2">
+                    @Html.Raw("LDA (m)")
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.Raw(heading.LdaM)
                 </dd>
                 <dt class="col-sm-2">
-                    @Html.Raw("Heading 2")
+                    @Html.Raw("TORA (m)")
                 </dt>
                 <dd class="col-sm-10">
-                    @Html.Raw(runway.RunwayHeadings[1].Name + " / " + runway.RunwayHeadings[1].HeadingDeg)
+                    @Html.Raw(heading.ToraM)
                 </dd>
+                }
             </dl>
         }
     }

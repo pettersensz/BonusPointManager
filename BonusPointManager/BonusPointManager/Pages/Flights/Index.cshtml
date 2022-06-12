@@ -17,10 +17,16 @@
                 @Html.DisplayNameFor(model => model.Flight[0].FlightNumber)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Flight[0].DepartureTimeUtc)
+                @Html.DisplayNameFor(model => model.Flight[0].DepartureTimeLocal)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Flight[0].ArrivalTimeUtc)
+                @Html.DisplayNameFor(model => model.Flight[0].DepartureAirport)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Flight[0].ArrivalAirport)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Flight[0].ArrivalTimeLocal)
             </th>
             <th></th>
         </tr>
@@ -32,10 +38,16 @@
                 @Html.DisplayFor(modelItem => item.FlightNumber)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DepartureTimeUtc)
+                @Html.DisplayFor(modelItem => item.DepartureTimeLocal)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ArrivalTimeUtc)
+                @Html.DisplayFor(modelItem => item.DepartureAirport.IataCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArrivalAirport.IataCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArrivalTimeLocal)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |

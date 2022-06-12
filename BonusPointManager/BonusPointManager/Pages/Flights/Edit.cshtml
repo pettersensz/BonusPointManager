@@ -20,14 +20,24 @@
                 <span asp-validation-for="Flight.FlightNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Flight.DepartureTimeUtc" class="control-label"></label>
-                <input asp-for="Flight.DepartureTimeUtc" class="form-control" />
-                <span asp-validation-for="Flight.DepartureTimeUtc" class="text-danger"></span>
+                <label asp-for="Flight.DepartureAirport" class="control-label"></label>
+                <select name="DepartureAirportId" asp-for="SelectedDepartureAirportId" asp-items="Model.DepartureAirportList" class="form-control">
+                </select>
             </div>
             <div class="form-group">
-                <label asp-for="Flight.ArrivalTimeUtc" class="control-label"></label>
-                <input asp-for="Flight.ArrivalTimeUtc" class="form-control" />
-                <span asp-validation-for="Flight.ArrivalTimeUtc" class="text-danger"></span>
+                <label asp-for="Flight.ArrivalAirport" class="control-label"></label>
+                <select name="ArrivalAirportId" asp-for="SelectedArrivalAirportId" asp-items="Model.ArrivalAirportList" class="form-control">
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Flight.DepartureTimeLocal" class="control-label"></label>
+                <input asp-for="Flight.DepartureTimeLocal" class="form-control" />
+                <span asp-validation-for="Flight.DepartureTimeLocal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Flight.ArrivalTimeLocal" class="control-label"></label>
+                <input asp-for="Flight.ArrivalTimeLocal" class="form-control" />
+                <span asp-validation-for="Flight.ArrivalTimeLocal" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

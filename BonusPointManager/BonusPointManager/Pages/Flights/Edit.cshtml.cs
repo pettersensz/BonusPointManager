@@ -2,6 +2,7 @@
 using BonusPointManager.Models.Flights;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace BonusPointManager.Pages.Flights
@@ -9,6 +10,8 @@ namespace BonusPointManager.Pages.Flights
   public class EditModel : PageModel
   {
     private readonly BonusPointManagerContext _context;
+    public List<SelectListItem> DepartureAirportList;
+    public List<SelectListItem> ArrivalAirportList;
 
     public EditModel(BonusPointManagerContext context)
     {
@@ -17,6 +20,12 @@ namespace BonusPointManager.Pages.Flights
 
     [BindProperty]
     public Flight Flight { get; set; } = default!;
+
+    [BindProperty(Name = "DepartureAirportId")]
+    public int? SelectedDepartureAirportId { get; set; }
+
+    [BindProperty(Name = "ArrivalAirportId")]
+    public int? SelectedArrivalAirportId { get; set; }
 
     public async Task<IActionResult> OnGetAsync(int? id)
     {
@@ -31,6 +40,31 @@ namespace BonusPointManager.Pages.Flights
         return NotFound();
       }
       Flight = flight;
+
+      DepartureAirportList = new List<SelectListItem>();
+      DepartureAirportList.Add(new SelectListItem { Text = "Select Departure Airport", Value = "" });
+      foreach (var airport in _context.Airports.OrderBy(a => a.IataCode)) 
+      {
+        var newItem = new SelectListItem { Text = airport.IataCode, Value = airport.Id.ToString() };
+        if(airport.IataCode == Flight.DepartureAirport?.IataCode)
+        {
+          newItem.Selected = true;
+        }
+        DepartureAirportList.Add(newItem);
+      }
+
+      ArrivalAirportList = new List<SelectListItem>();
+      ArrivalAirportList.Add(new SelectListItem { Text = "Select Arrival Airport", Value = "" });
+      foreach (var airport in _context.Airports.OrderBy(a => a.IataCode))
+      {
+        var newItem = new SelectListItem { Text = airport.IataCode, Value = airport.Id.ToString() };
+        if (airport.IataCode == Flight.ArrivalAirport?.IataCode)
+        {
+          newItem.Selected = true;
+        }
+        ArrivalAirportList.Add(newItem);
+      }
+
       return Page();
     }
 
@@ -42,6 +76,12 @@ namespace BonusPointManager.Pages.Flights
       {
         return Page();
       }
+
+      var departureAirport = _context.Airports.FirstOrDefault(a => a.Id == SelectedDepartureAirportId);
+      if(departureAirport != null) Flight.DepartureAirport = departureAirport;
+
+      var arrivalAirport = _context.Airports.FirstOrDefault(a => a.Id == SelectedArrivalAirportId);
+      if (arrivalAirport != null) Flight.ArrivalAirport = arrivalAirport;
 
       _context.Attach(Flight).State = EntityState.Modified;
 

@@ -31,5 +31,19 @@ namespace BonusPointManager.Models.Flights
 
     public string Name { get; set; }
     public string LongName { get; set; }
+
+    [NotMapped]
+    [Display(Name ="Longest Runway (m)")]
+    public int LongestRunwayM { get {
+        var longestRunwayLength = 0;
+        foreach (var runway in Runways)
+        {
+          if(runway.LengthM > longestRunwayLength)
+          {
+            longestRunwayLength = runway.LengthM;
+          }
+        }
+        return longestRunwayLength;
+      } }
   }
 }

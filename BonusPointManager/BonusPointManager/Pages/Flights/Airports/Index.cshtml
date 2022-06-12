@@ -19,9 +19,6 @@
                 @Html.DisplayNameFor(model => model.Airport[0].Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Airport[0].Country)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Airport[0].IataCode)
             </th>
             <th>
@@ -34,10 +31,10 @@
                 @Html.DisplayNameFor(model => model.Airport[0].LongitudeDeg)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Airport[0].ElevationFt)
+                @Html.DisplayNameFor(model => model.Airport[0].RunwayCount)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Airport[0].RunwayCount)
+                @Html.DisplayNameFor(model => model.Airport[0].LongestRunwayM)
             </th>
             <th></th>
         </tr>
@@ -47,9 +44,6 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Country)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IataCode)
@@ -64,10 +58,10 @@
                 @Html.DisplayFor(modelItem => item.LongitudeDeg)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ElevationFt)
+                @Html.DisplayFor(modelItem => item.RunwayCount)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.RunwayCount)
+                @Html.DisplayFor(modelItem => item.LongestRunwayM)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
