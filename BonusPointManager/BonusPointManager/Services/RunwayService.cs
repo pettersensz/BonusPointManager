@@ -44,7 +44,7 @@ namespace BonusPointManager.Services
         if (runwayIcaoCode == icaoCode)
         {
           var runway = new Runway();
-          runway.LenghtFt = Int32.Parse(runwayDetails[3]);
+          runway.LengthFt = Int32.Parse(runwayDetails[3]);
           runway.WidthFt = Int32.Parse(runwayDetails[4]);
           if (runwayDetails[5].Trim('"') == "ASP" || runwayDetails[5].Trim('"') == "Asphalt") runway.RunwaySurface = SurfaceType.Asphalt;
 

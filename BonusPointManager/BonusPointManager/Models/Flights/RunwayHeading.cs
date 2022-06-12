@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using BonusPointManager.Models.Conversion;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BonusPointManager.Models.Flights
@@ -15,6 +16,8 @@ namespace BonusPointManager.Models.Flights
 
     [Display(Name = "Displaced Threshold (ft)")]
     public int DisplacedThresholdFt { get; set; }
+    [NotMapped]
+    public int DisplacedThresholdM { get => LengthConversion.ConvertFeetToMeters(DisplacedThresholdFt); }
 
     [Column(TypeName = "decimal(17,14)")]
     [DisplayFormat(DataFormatString = "{0:0.0000}")]

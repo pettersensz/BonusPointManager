@@ -46,9 +46,37 @@ namespace BonusPointManager.Pages.Flights.Airports
 
       var runwayList = _runwayService.GetRunwaysForIcaoCode(Airport.IcaoCode);
 
+      var airport = _context.Airports.FirstOrDefault(a => a.Id == Airport.Id);
+      if(airport == null) return NotFound();
+
+      airport.Runways = runwayList;
+
+      _context.Attach(airport).State = EntityState.Modified;
+
+      try
+      {
+        await _context.SaveChangesAsync();
+      }
+      catch (DbUpdateConcurrencyException)
+      {
+        if (!AirportExists(Airport.Id))
+        {
+          return NotFound();
+        }
+        else
+        {
+          throw;
+        }
+      }
+
       ViewData["Message"] = runwaysFound.ToString() + " runways were found for " + Airport.IcaoCode;
       
       return Page();
+    }
+    // TODO Duplication from edit
+    private bool AirportExists(int id)
+    {
+      return _context.Airports.Any(e => e.Id == id);
     }
 
   }

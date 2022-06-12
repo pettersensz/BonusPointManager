@@ -20,7 +20,7 @@ namespace BonusPointManager.Pages.Flights.Airports
     {
       if (_context.Airports != null)
       {
-        Airport = await _context.Airports.ToListAsync();
+        Airport = await _context.Airports.Include(a => a.Runways).ToListAsync();
       }
     }
   }

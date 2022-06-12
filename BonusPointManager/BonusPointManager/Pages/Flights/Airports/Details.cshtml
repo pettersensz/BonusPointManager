@@ -8,6 +8,7 @@
 <h1>Details</h1>
 
 <div>
+    <hr />
     <h4>Airport</h4>
     <hr />
     <dl class="row">
@@ -54,12 +55,62 @@
             @Html.DisplayFor(model => model.Airport.Name)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Airport.LongName)
+            @Html.DisplayNameFor(model => model.Airport.RunwayCount)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Airport.LongName)
+            @Html.DisplayFor(model => model.Airport.RunwayCount)
         </dd>
     </dl>
+    <hr />
+    <h4>Runways</h4>
+    <hr />
+    @if(Model.Airport.RunwayCount > 0)
+    {
+        foreach (var runway in Model.Airport.Runways.ToList())
+        {
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.Raw("Name")
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.Raw(runway.Name)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.Raw("Length / Width (m)")
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.Raw(runway.LengthM + " / " + runway.WidthM)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.Raw("Length / Width (ft)")
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.Raw(runway.LengthFt + " / " + runway.WidthFt)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.Raw("Heading 1")
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.Raw(runway.RunwayHeading1.Name + " / " + runway.RunwayHeading1.HeadingDeg)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.Raw("H1 Disp. Threshold (m/ft)")
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.Raw(runway.RunwayHeading1.DisplacedThresholdM + " / " + runway.RunwayHeading1.DisplacedThresholdFt)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.Raw("Heading 2")
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.Raw(runway.RunwayHeading2.Name + " / " + runway.RunwayHeading2.HeadingDeg)
+                </dd>
+            </dl>
+        }
+    }
+ 
+ 
+
 </div>
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.Airport?.Id">Edit</a> |
